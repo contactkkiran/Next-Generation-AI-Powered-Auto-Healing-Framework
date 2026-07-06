@@ -1,35 +1,80 @@
 import { LocatorCache } from '../core/LocatorCache';
 import { LocatorRepository } from '../repository/LocatorRepository';
 
+/**
+ * Handles locator healing workflow.
+ *
+ * Healing priority:
+ * - In-memory cache
+ * - Historical locator repository
+ */
 export class SmartHealingService {
   constructor(private locatorRepository: LocatorRepository) {}
 
+  /**
+   * Finds the best available locator for recovery.
+   */
   async heal(elementName: string, pageName: string): Promise<string | null> {
-    const cacheKey = `${pageName}_${elementName}`;
+    const cacheKey = this.generateCacheKey(pageName, elementName);
 
-    // Step 1: Check Cache
-    if (LocatorCache.has(cacheKey)) {
-      console.log(`⚡ Cache Hit for ${elementName}`);
+    const cachedLocator = this.findLocatorFromCache(cacheKey, elementName);
 
-      return LocatorCache.get(cacheKey)!;
+    if (cachedLocator) {
+      return cachedLocator;
     }
 
-    console.log(`📦 Cache Miss for ${elementName}`);
+    const historicalLocator = await this.findHistoricalLocator(elementName, pageName);
 
-    // Step 2: Search Database
-    const historicalLocator = await this.locatorRepository.findLocator(elementName, pageName);
-
-    // Step 3: Store in Cache
-    if (historicalLocator) {
-      LocatorCache.put(cacheKey, historicalLocator);
-
-      console.log(`✅ Healing candidate found: ${historicalLocator}`);
-
-      return historicalLocator;
+    if (!historicalLocator) {
+      return null;
     }
 
-    console.log(`❌ No historical locator available for ${elementName}`);
+    LocatorCache.put(cacheKey, historicalLocator);
 
-    return null;
+    return historicalLocator;
+  }
+
+  /**
+   * Retrieves locator from cache.
+   */
+  private findLocatorFromCache(cacheKey: string, elementName: string): string | undefined {
+    const locator = LocatorCache.get(cacheKey);
+
+    if (locator) {
+      console.log(`Cache hit for locator: ${elementName}`);
+
+      return locator;
+    }
+
+    console.log(`Cache miss for locator: ${elementName}`);
+
+    return undefined;
+  }
+
+  /**
+   * Retrieves locator from historical storage.
+   */
+  private async findHistoricalLocator(
+    elementName: string,
+    pageName: string,
+  ): Promise<string | null> {
+    const locator = await this.locatorRepository.findLocator(elementName, pageName);
+
+    if (!locator) {
+      console.log(`No historical locator available for: ${elementName}`);
+
+      return null;
+    }
+
+    console.log(`Healing candidate found: ${locator}`);
+
+    return locator;
+  }
+
+  /**
+   * Generates unique cache key for locator lookup.
+   */
+  private generateCacheKey(pageName: string, elementName: string): string {
+    return `${pageName}_${elementName}`;
   }
 }

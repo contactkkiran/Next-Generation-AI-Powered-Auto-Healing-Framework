@@ -1,22 +1,27 @@
-import { PostgresDatabase } from '../database/PostgresDatabase';
-
 import { DatabaseInitializer } from '../database/DatabaseInitializer';
-
+import { PostgresDatabase } from '../database/PostgresDatabase';
 import { LocatorRepository } from '../repository/LocatorRepository';
 
-async function testConnection() {
-  const db = new PostgresDatabase();
+/**
+ * Validates enterprise framework database initialization flow.
+ */
+async function testConnection(): Promise<void> {
+  const database = new PostgresDatabase();
 
-  await db.connect();
+  try {
+    await database.connect();
 
-  await DatabaseInitializer.initialize(db);
+    await DatabaseInitializer.initialize(database);
 
-  const locatorRepo = new LocatorRepository(db);
+    const locatorRepository = new LocatorRepository(database);
 
-  // Temporary test data
-  await locatorRepo.saveLocator('Login Button', '[data-test="login-butt"]', 'LoginPage');
+    // Create test locator history record
+    await locatorRepository.saveLocator('Login Button', '[data-test="login-button"]', 'LoginPage');
 
-  console.log('🎉 Enterprise Framework Initialization Successful');
+    console.log('Enterprise framework initialized successfully');
+  } finally {
+    await database.disconnect();
+  }
 }
 
 testConnection();

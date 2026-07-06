@@ -1,32 +1,43 @@
 import * as fs from 'fs';
 import { DOMSnapshotModel } from '../models/DOMSnapshotModel';
 
+/**
+ * Handles loading and converting DOM snapshots
+ * used for locator healing.
+ */
 export class DOMSnapshotRepository {
-  static loadSnapshots(): DOMSnapshotModel[] {
-    const file = 'dom-snapshots.json';
+  private static readonly SNAPSHOT_FILE = 'dom-snapshots.json';
 
-    // Check whether file exists
-    if (!fs.existsSync(file)) {
-      console.log('⚠️ No DOM snapshot file found');
+  /**
+   * Loads available DOM snapshots.
+   */
+  static loadSnapshots(): DOMSnapshotModel[] {
+    // Check whether snapshot file exists
+    if (!DOMSnapshotRepository.snapshotFileExists()) {
+      console.log('No DOM snapshot file found');
 
       return [];
     }
 
     // Read file contents
-    const fileContents = fs.readFileSync(file, 'utf8');
+    const fileContents = DOMSnapshotRepository.readSnapshotFile();
 
-    // Convert each JSON line into object
-    const lines: string[] = fileContents
+    // Convert JSON data into snapshot models
+    return DOMSnapshotRepository.convertToSnapshots(fileContents);
+  }
 
+  private static snapshotFileExists(): boolean {
+    return fs.existsSync(DOMSnapshotRepository.SNAPSHOT_FILE);
+  }
+
+  private static readSnapshotFile(): string {
+    return fs.readFileSync(DOMSnapshotRepository.SNAPSHOT_FILE, 'utf8');
+  }
+
+  private static convertToSnapshots(fileContents: string): DOMSnapshotModel[] {
+    return fileContents
       .split('\n')
-
-      .filter((line: string) => line.trim() !== '');
-
-    const snapshots: DOMSnapshotModel[] = lines.map(
-      (line: string) => JSON.parse(line) as DOMSnapshotModel,
-    );
-
-      return snapshots;
-      
+      .filter((line: string) => line.trim() !== '')
+      .map((line: string) => JSON.parse(line) as DOMSnapshotModel);
   }
 }

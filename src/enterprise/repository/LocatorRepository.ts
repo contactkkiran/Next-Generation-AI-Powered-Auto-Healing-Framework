@@ -1,16 +1,77 @@
 import { PostgresDatabase } from '../database/PostgresDatabase';
 
+/**
+ * Handles locator persistence operations.
+ *
+ * Responsible for:
+ * - Saving locator history
+ * - Updating locator reliability
+ * - Retrieving best matching locator
+ */
 export class LocatorRepository {
+  private static readonly TABLE_NAME = 'locator_history';
+
   constructor(private db: PostgresDatabase) {}
 
+  /**
+   * Saves a locator or updates reliability when it already exists.
+   */
   async saveLocator(elementName: string, locator: string, pageName: string): Promise<void> {
-    const client = this.db.getClient();
+    const existingLocator = await this.findExistingLocator(elementName, locator, pageName);
 
-    // Check whether locator already exists
-    const result = await client.query(
+    if (existingLocator) {
+      await this.updateLocatorSuccessCount(elementName, locator, pageName);
+
+      console.log(`Updated locator: ${elementName}`);
+
+      return;
+    }
+
+    await this.insertLocator(elementName, locator, pageName);
+
+    console.log(`New locator saved: ${elementName}`);
+  }
+
+  /**
+   * Finds the most reliable locator based on success count.
+   */
+  async findLocator(elementName: string, pageName: string): Promise<string | null> {
+    const result = await this.db.getClient().query(
       `
-      SELECT success_count
-      FROM locator_history
+      SELECT locator
+      FROM ${LocatorRepository.TABLE_NAME}
+      WHERE
+        element_name = $1
+        AND page_name = $2
+      ORDER BY success_count DESC
+      LIMIT 1
+      `,
+      [elementName, pageName],
+    );
+
+    if (!result.rows.length) {
+      console.log(`No historical locator found: ${elementName}`);
+
+      return null;
+    }
+
+    console.log(`Historical locator found: ${elementName}`);
+
+    return result.rows[0].locator;
+  }
+
+  /**
+   * Checks whether locator already exists.
+   */
+  private async findExistingLocator(
+    elementName: string,
+    locator: string,
+    pageName: string,
+  ): Promise<boolean> {
+    const result = await this.db.getClient().query(
+      `
+      SELECT id
+      FROM ${LocatorRepository.TABLE_NAME}
       WHERE
         element_name = $1
         AND locator = $2
@@ -19,69 +80,50 @@ export class LocatorRepository {
       [elementName, locator, pageName],
     );
 
-    // Locator already exists
-    if (result.rows.length > 0) {
-      await client.query(
-        `
-        UPDATE locator_history
-        SET success_count =
-            success_count + 1
-        WHERE
-          element_name = $1
-          AND locator = $2
-          AND page_name = $3
-        `,
-        [elementName, locator, pageName],
-      );
-
-      console.log(`🔄 Updated locator: ${elementName}`);
-    }
-
-    // New locator
-    else {
-      await client.query(
-        `
-        INSERT INTO locator_history
-        (
-          element_name,
-          locator,
-          page_name,
-          success_count
-        )
-        VALUES
-        ($1,$2,$3,$4)
-        `,
-        [elementName, locator, pageName, 1],
-      );
-
-      console.log(`✅ New locator saved: ${elementName}`);
-    }
+    return result.rows.length > 0;
   }
 
-  async findLocator(elementName: string, pageName: string): Promise<string | null> {
-    const client = this.db.getClient();
-
-    const result = await client.query(
+  /**
+   * Inserts a new locator record.
+   */
+  private async insertLocator(
+    elementName: string,
+    locator: string,
+    pageName: string,
+  ): Promise<void> {
+    await this.db.getClient().query(
       `
-    SELECT locator
-    FROM locator_history
-    WHERE
-      element_name = $1
-      AND page_name = $2
-    ORDER BY success_count DESC
-    LIMIT 1
-    `,
-      [elementName, pageName],
+      INSERT INTO ${LocatorRepository.TABLE_NAME}
+      (
+        element_name,
+        locator,
+        page_name,
+        success_count
+      )
+      VALUES ($1, $2, $3, $4)
+      `,
+      [elementName, locator, pageName, 1],
     );
+  }
 
-    if (result.rows.length > 0) {
-      console.log(`✅ Historical locator found for ${elementName}`);
-
-      return result.rows[0].locator;
-    }
-
-    console.log(`❌ No historical locator found for ${elementName}`);
-
-    return null;
+  /**
+   * Updates locator success count.
+   */
+  private async updateLocatorSuccessCount(
+    elementName: string,
+    locator: string,
+    pageName: string,
+  ): Promise<void> {
+    await this.db.getClient().query(
+      `
+      UPDATE ${LocatorRepository.TABLE_NAME}
+      SET success_count = success_count + 1
+      WHERE
+        element_name = $1
+        AND locator = $2
+        AND page_name = $3
+      `,
+      [elementName, locator, pageName],
+    );
   }
 }
