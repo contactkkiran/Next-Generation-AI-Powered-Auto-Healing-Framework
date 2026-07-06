@@ -6,6 +6,7 @@ import { RetryEngine } from '../core/RetryEngine';
 import { FlakyQuarantineManager } from '../utils/FlakyQuarantineManager';
 import { FrameworkLogger } from '../utils/FrameworkLogger';
 
+// test.setTimeout(120000);
 test('E2E Order Flow using MCP Framework', async ({ page }, testInfo) => {
   // Clear previous execution logs
   FrameworkLogger.clear();

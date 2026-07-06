@@ -1,0 +1,22 @@
+{"elementName":"Username","locator":"[data-test='username']","capturedOn":"2026-06-23T13:05:34.977Z"}
+{"elementName":"Password","locator":"[data-test='password']","capturedOn":"2026-06-23T13:05:35.009Z"}
+{"elementName":"Login Button","locator":"[data-test='login-button']","capturedOn":"2026-06-23T13:05:35.070Z"}
+{"elementName":"Add Backpack","locator":"[data-test='add-to-cart-sauce-labs-backpack']","capturedOn":"2026-06-23T13:05:35.161Z"}
+{"elementName":"Shopping Cart","locator":".shopping_cart_link","capturedOn":"2026-06-23T13:05:35.187Z"}
+{"elementName":"Checkout","locator":"[data-test='checkout']","capturedOn":"2026-06-23T13:05:35.251Z"}
+{"elementName":"First Name","locator":"[data-test='firstName']","capturedOn":"2026-06-23T13:05:35.323Z"}
+{"elementName":"Last Name","locator":"[data-test='lastName']","capturedOn":"2026-06-23T13:05:35.340Z"}
+{"elementName":"Postal Code","locator":"[data-test='postalCode']","capturedOn":"2026-06-23T13:05:35.349Z"}
+{"elementName":"Continue","locator":"[data-test='continue']","capturedOn":"2026-06-23T13:05:35.357Z"}
+{"elementName":"Finish","locator":"[data-test='finish']","capturedOn":"2026-06-23T13:05:35.424Z"}
+{"elementName":"Username","locator":"[data-test='username']","capturedOn":"2026-06-23T13:11:49.533Z"}
+{"elementName":"Password","locator":"[data-test='password']","capturedOn":"2026-06-23T13:11:49.565Z"}
+{"elementName":"Login Button","locator":"[data-test='login-button']","capturedOn":"2026-06-23T13:11:49.630Z"}
+{"elementName":"Add Backpack","locator":"[data-test='add-to-cart-sauce-labs-backpack']","capturedOn":"2026-06-23T13:11:49.745Z"}
+{"elementName":"Shopping Cart","locator":".shopping_cart_link","capturedOn":"2026-06-23T13:11:49.779Z"}
+{"elementName":"Checkout","locator":"[data-test='checkout']","capturedOn":"2026-06-23T13:11:49.848Z"}
+{"elementName":"First Name","locator":"[data-test='firstName']","capturedOn":"2026-06-23T13:11:49.913Z"}
+{"elementName":"Last Name","locator":"[data-test='lastName']","capturedOn":"2026-06-23T13:11:49.929Z"}
+{"elementName":"Postal Code","locator":"[data-test='postalCode']","capturedOn":"2026-06-23T13:11:49.938Z"}
+{"elementName":"Continue","locator":"[data-test='continue']","capturedOn":"2026-06-23T13:11:49.947Z"}
+{"elementName":"Finish","locator":"[data-test='finish']","capturedOn":"2026-06-23T13:11:50.014Z"}

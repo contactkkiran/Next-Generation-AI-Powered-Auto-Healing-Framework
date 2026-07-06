@@ -1,0 +1,29 @@
+{"elementName":"Username","locator":"[data-test='username']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Username\" type=\"text\" data-test=\"username\" id=\"user-name\" name=\"user-name\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T10:42:48.067Z"}
+{"elementName":"Password","locator":"[data-test='password']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Password\" type=\"password\" data-test=\"password\" id=\"password\" name=\"password\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T10:42:48.131Z"}
+{"elementName":"Username","locator":"[data-test='username']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Username\" type=\"text\" data-test=\"username\" id=\"user-name\" name=\"user-name\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T10:43:12.574Z"}
+{"elementName":"Password","locator":"[data-test='password']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Password\" type=\"password\" data-test=\"password\" id=\"password\" name=\"password\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T10:43:12.627Z"}
+{"elementName":"Username","locator":"[data-test='username']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Username\" type=\"text\" data-test=\"username\" id=\"user-name\" name=\"user-name\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T11:09:48.394Z"}
+{"elementName":"Password","locator":"[data-test='password']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Password\" type=\"password\" data-test=\"password\" id=\"password\" name=\"password\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T11:09:48.440Z"}
+{"elementName":"Username","locator":"[data-test='username']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Username\" type=\"text\" data-test=\"username\" id=\"user-name\" name=\"user-name\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T11:10:05.561Z"}
+{"elementName":"Password","locator":"[data-test='password']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Password\" type=\"password\" data-test=\"password\" id=\"password\" name=\"password\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T11:10:05.607Z"}
+{"elementName":"Username","locator":"[data-test='username']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Username\" type=\"text\" data-test=\"username\" id=\"user-name\" name=\"user-name\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T11:12:05.172Z"}
+{"elementName":"Password","locator":"[data-test='password']","tag":"INPUT","text":"","html":"<input class=\"input_error form_input\" placeholder=\"Password\" type=\"password\" data-test=\"password\" id=\"password\" name=\"password\" autocorrect=\"off\" autocapitalize=\"none\" value=\"\">","capturedOn":"2026-06-23T11:12:05.223Z"}
+{"elementName":"Username","locator":"[data-test='username']","capturedOn":"2026-06-23T11:17:26.569Z"}
+{"elementName":"Password","locator":"[data-test='password']","capturedOn":"2026-06-23T11:17:26.610Z"}
+{"elementName":"Username","locator":"[data-test='username']","capturedOn":"2026-06-23T11:18:39.581Z"}
+{"elementName":"Password","locator":"[data-test='password']","capturedOn":"2026-06-23T11:18:39.612Z"}
+{"elementName":"Username","locator":"[data-test='username']","capturedOn":"2026-06-23T11:26:48.209Z"}
+{"elementName":"Password","locator":"[data-test='password']","capturedOn":"2026-06-23T11:26:48.257Z"}
+{"elementName":"Username","locator":"[data-test='username']","capturedOn":"2026-06-23T11:35:20.901Z"}
+{"elementName":"Password","locator":"[data-test='password']","capturedOn":"2026-06-23T11:35:20.943Z"}
+{"elementName":"Username","locator":"[data-test='username']","capturedOn":"2026-06-23T11:35:36.891Z"}
+{"elementName":"Password","locator":"[data-test='password']","capturedOn":"2026-06-23T11:35:36.918Z"}
+{"elementName":"Login Button","locator":"[data-test='login-button']","capturedOn":"2026-06-23T11:35:36.989Z"}
+{"elementName":"Add Backpack","locator":"[data-test='add-to-cart-sauce-labs-backpack']","capturedOn":"2026-06-23T11:35:37.108Z"}
+{"elementName":"Shopping Cart","locator":".shopping_cart_link","capturedOn":"2026-06-23T11:35:37.129Z"}
+{"elementName":"Checkout","locator":"[data-test='checkout']","capturedOn":"2026-06-23T11:35:37.199Z"}
+{"elementName":"First Name","locator":"[data-test='firstName']","capturedOn":"2026-06-23T11:35:37.276Z"}
+{"elementName":"Last Name","locator":"[data-test='lastName']","capturedOn":"2026-06-23T11:35:37.300Z"}
+{"elementName":"Postal Code","locator":"[data-test='postalCode']","capturedOn":"2026-06-23T11:35:37.313Z"}
+{"elementName":"Continue","locator":"[data-test='continue']","capturedOn":"2026-06-23T11:35:37.326Z"}
+{"elementName":"Finish","locator":"[data-test='finish']","capturedOn":"2026-06-23T11:35:37.405Z"}
