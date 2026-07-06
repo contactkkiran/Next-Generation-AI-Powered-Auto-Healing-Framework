@@ -16,7 +16,6 @@ export class SmartHealingService {
    */
   async heal(elementName: string, pageName: string): Promise<string | null> {
     const cacheKey = this.generateCacheKey(pageName, elementName);
-
     const cachedLocator = this.findLocatorFromCache(cacheKey, elementName);
 
     if (cachedLocator) {
