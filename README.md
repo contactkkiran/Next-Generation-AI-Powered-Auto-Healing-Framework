@@ -1,200 +1,252 @@
-# Next Generation AI Powered Auto Healing Framework
+# Enterprise AI-Powered Auto Healing™ Framework
 
-This repository demonstrates a lightweight Playwright-based automation setup that combines:
+> Enterprise-grade intelligent self-healing framework for Playwright automation.
 
-- resilient locator handling
-- retry logic for transient failures
-- dynamic visibility waiting
-- quarantine support for flaky tests
-- a simple demo MCP-style healing flow
+The **Enterprise AI-Powered Auto Healing™ Framework** is a  next-generation self-healing solution that automatically recovers from broken UI locators during Playwright test execution. It minimizes test failures caused by application UI changes using historical locator intelligence, DOM similarity analysis, and an extensible enterprise architecture designed for future AI-powered decision making.
 
-The sample test uses SauceDemo to show how the framework can recover from a broken selector during a real checkout flow.
+Built using enterprise software engineering principles, the framework improves automation stability, reduces maintenance effort, and provides a scalable foundation for intelligent test automation.
 
 ---
 
-## What this project does
+# Features
 
-The framework is designed to reduce brittleness caused by:
-
-- changing UI selectors
-- slow or delayed rendering
-- intermittent network issues
-- unstable test environments
-
-The main idea is to keep the test logic readable while adding safety checks around element lookup and action execution.
-
----
-
-## Core components
-
-- `ActionEngine`
-  - wraps common actions such as `click` and `type`
-  - uses the healer before interacting with elements
-
-- `AutoHealingEngine`
-  - checks whether a locator exists
-  - triggers the healing flow when needed
-  - stores a summary of healed locators
-
-- `DynamicWaitEngine`
-  - waits for an element to become visible before use
-
-- `RetryEngine`
-  - retries an action up to three times
-  - captures screenshots when a retry fails
-
-- `MCPClient`
-  - contains the demo locator-healing mapping
-  - currently maps a broken login selector to the corrected one
-
-- `FrameworkLogger`
-  - records execution messages for debugging and report attachments
-
-- `FlakyQuarantineManager`
-  - marks failed tests so they can be skipped temporarily if needed
+- Enterprise TypeScript Architecture
+- Playwright Integration
+- PostgreSQL Locator Repository
+- In-Memory Locator Cache
+- Smart Locator Recovery
+- DOM Snapshot Repository
+- DOM Similarity Engine
+- Automatic Healing Workflow
+- Repository Pattern
+- Configurable Framework Architecture
+- Production-Ready Design
 
 ---
 
-## Project structure
+# Healing Workflow
 
 ```text
-.
-├── playwright.config.ts
-├── README.md
-└── src
-    ├── core
-    │   ├── ActionEngine.ts
-    │   ├── AutoHealingEngine.ts
-    │   ├── DynamicWaitEngine.ts
-    │   ├── MCPClient.ts
-    │   └── RetryEngine.ts
-    ├── mcp
-    │   └── server
-    │       └── server.ts
-    ├── tests
-    │   └── ordersworkflow.spec.ts
-    └── utils
-        ├── FlakyQuarantineManager.ts
-        └── FrameworkLogger.ts
+Broken Locator
+       │
+       ▼
+SmartHealingService
+       │
+       ▼
+Locator Cache
+       │
+       ▼
+Historical Locator Repository
+       │
+       ▼
+DOM Similarity Engine
+       │
+       ▼
+Recovered Locator
+       │
+       ▼
+Continue Test Execution
 ```
 
 ---
 
-## Prerequisites
+# Architecture
 
-Before running the project, make sure you have:
-
-- Node.js 18 or newer
-- npm
-- a browser available for Playwright
+```text
+                   Test Execution
+                          │
+                          ▼
+                     Playwright
+                          │
+                          ▼
+                 SmartHealingService
+                          │
+      ┌───────────────────┼────────────────────┐
+      │                   │                    │
+      ▼                   ▼                    ▼
+Locator Cache     PostgreSQL Repository   DOM Snapshot Repository
+      │                   │                    │
+      └───────────────────┼────────────────────┘
+                          │
+                          ▼
+                DOM Similarity Engine
+                          │
+                          ▼
+        Confidence Engine (Upcoming)
+                          │
+                          ▼
+        Vector Database (Future)
+                          │
+                          ▼
+        AI Healing Engine (Future)
+```
 
 ---
 
-## Setup
+# Project Structure
 
-If the repository does not yet contain a package file, initialize one first:
+```text
+src/
+└── enterprise
+    ├── ai
+    ├── config
+    ├── core
+    ├── database
+    ├── dom
+    ├── models
+    ├── repository
+    ├── services
+    ├── similarity
+    ├── vector
+    └── tests
+```
+
+---
+
+# Current Capabilities
+
+- Historical Locator Management
+- Intelligent Locator Cache
+- Automatic Locator Recovery
+- DOM Snapshot Storage
+- DOM Element Comparison
+- Similarity Score Calculation
+- Smart Healing Service
+- Enterprise Repository Pattern
+- Database Initialization
+- Configurable Database Layer
+
+---
+
+# Roadmap
+
+## Phase 1
+
+- DOM Extraction Engine
+- Healing Candidate Model
+- Confidence Scoring
+- Candidate Ranking
+
+## Phase 2
+
+- Automatic Locator Validation
+- Healing Analytics
+- Healing Metrics Dashboard
+- Retry Optimization
+
+## Phase 3
+
+- Vector Database Integration
+- Semantic Locator Search
+- Embedding-Based Locator Matching
+- AI-Assisted Healing Decisions
+
+## Phase 4
+
+- Self-Learning Locator Intelligence
+- Continuous Learning
+- Enterprise Knowledge Base
+- Autonomous AI Healing Engine
+
+---
+
+# Technology Stack
+
+| Technology | Purpose |
+|------------|---------|
+| TypeScript | Framework Development |
+| Playwright | Browser Automation |
+| PostgreSQL | Locator Repository |
+| Node.js | Runtime |
+| Git | Version Control |
+
+---
+
+# Design Principles
+
+- Enterprise Architecture
+- SOLID Principles
+- Clean Code
+- Repository Pattern
+- Extensible Design
+- Configurable Components
+- High Performance
+- Production-Ready Engineering
+
+---
+
+# Why Enterprise AI-Powered Auto Healing™ Framework?
+
+Traditional automation frameworks fail immediately when application locators change, resulting in unstable test execution and increased maintenance effort.
+
+The Enterprise AI-Powered Auto Healing™ Framework addresses this challenge by:
+
+- Recovering previously successful locators
+- Comparing historical and current DOM structures
+- Identifying the best healing candidate
+- Reducing automation maintenance
+- Improving execution reliability
+- Providing a scalable foundation for AI-powered automation
+
+---
+
+# Getting Started
+
+Clone the repository:
 
 ```bash
-npm init -y
+git clone https://github.com/<your-github-username>/enterprise-ai-powered-auto-healing-framework.git
 ```
 
-Then install dependencies:
+Install dependencies:
 
 ```bash
 npm install
-npm install -D @playwright/test
-npx playwright install
 ```
 
-The config file already includes the basic Playwright settings for the repo.
-
----
-
-## Playwright configuration
-
-The test runner settings in [playwright.config.ts](playwright.config.ts) include:
-
-- test folder: `src/tests`
-- parallel execution enabled
-- screenshots, videos, and traces enabled
-- Chromium configured as the default project
-- headless mode turned off in the current config
-
----
-
-## Running the tests
-
-Run the full suite:
+Run the framework:
 
 ```bash
-npx playwright test
-```
-
-Run in headed mode:
-
-```bash
-npx playwright test --headed
-```
-
-Run a specific spec:
-
-```bash
-npx playwright test src/tests/ordersworkflow.spec.ts
+npm run test
 ```
 
 ---
 
-## Example workflow
+# Contributing
 
-The sample scenario in [src/tests/ordersworkflow.spec.ts](src/tests/ordersworkflow.spec.ts) covers:
+Contributions are welcome.
 
-1. navigating to SauceDemo
-2. logging in with valid credentials
-3. attempting a broken login selector to demonstrate healing
-4. adding a product to the cart
-5. opening the cart
-6. completing checkout
-7. validating the final success message
+Please read the **CONTRIBUTING.md** guidelines before submitting issues or pull requests.
 
 ---
 
-## How the healing flow works
+# License
 
-A simplified flow looks like this:
+Licensed under the Apache License, Version 2.0.
 
-1. the test asks the framework to interact with a locator
-2. `ActionEngine` delegates the lookup to `AutoHealingEngine`
-3. `AutoHealingEngine` checks whether the locator exists
-4. if the locator is missing, `MCPClient` attempts a repair suggestion
-5. the action is retried if needed
-6. logs and screenshots are attached to the report for traceability
+See the **LICENSE** file for details.
 
 ---
 
-## Running the demo MCP server
+# Trademark Notice
 
-The file [src/mcp/server/server.ts](src/mcp/server/server.ts) is a minimal demo server stub. It prints startup messages and keeps the process alive.
-
-You can run it with:
-
-```bash
-node src/mcp/server/server.ts
-```
+**Enterprise AI-Powered Auto Healing™ Framework** is an unregistered trademark claimed by the project author.
 
 ---
 
-## Troubleshooting
+# Author
 
-If a run fails unexpectedly:
+**Kiran Kanumuri**
 
-- verify the app is reachable
-- ensure the browser is installed correctly
-- review generated screenshots and traces
-- inspect the attached logs from `FrameworkLogger`
-- check whether the locator healing logic returned an unexpected selector
+Enterprise Automation Architect
+
+Specializing in:
+
+- Enterprise Test Automation
+- Playwright Automation
+- Intelligent Automation Frameworks
+- AI-Powered Quality Engineering
 
 ---
 
-## Notes
 
-This repo is best viewed as a proof-of-concept framework for experimenting with resilient UI automation. It provides a good starting point for adding stronger reporting, better selector strategies, and more realistic MCP integrations later.
