@@ -3,14 +3,13 @@ import { PostgresDatabase } from '../database/PostgresDatabase';
 import { LocatorRepository } from '../repository/LocatorRepository';
 
 /**
- * Validates enterprise framework database initialization flow.
+ * Validates database connection and framework initialization flow.
  */
-async function testConnection(): Promise<void> {
+async function validateFrameworkInitialization(): Promise<void> {
   const database = new PostgresDatabase();
 
   try {
     await database.connect();
-
     await DatabaseInitializer.initialize(database);
 
     const locatorRepository = new LocatorRepository(database);
@@ -19,9 +18,11 @@ async function testConnection(): Promise<void> {
     await locatorRepository.saveLocator('Login Button', '[data-test="login-button"]', 'LoginPage');
 
     console.log('Enterprise framework initialized successfully');
+  } catch (error) {
+    console.error('Framework initialization failed', error);
   } finally {
     await database.disconnect();
   }
 }
 
-testConnection();
+validateFrameworkInitialization();
